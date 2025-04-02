@@ -1,0 +1,163 @@
+external_templates:
+  default: templates
+
+templates:
+  star_rating:
+    default:
+      horizontal_align: center
+      vertical_align: bottom
+      icons: gold
+    optional:
+      - builder_level
+    conditionals:
+      icon_folder:
+        default: gold
+        conditions:
+          - icons: [color, gold, white]
+            value: <<icons>>
+      vertical_offset:
+        default: 15
+        conditions:
+          - vertical_align: center
+            value: 0
+          - vertical_align: top
+            value: 15
+          - vertical_align: bottom
+            value: 30
+      horizontal_offset:
+        default: 15
+        conditions:
+          - horizontal_align: center
+            value: 0
+          - horizontal_align: [left, right]
+            value: 15
+      files:
+        conditions:
+          - key: star_rating_0
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_0.png
+          - key: star_rating_1
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_1.png
+          - key: star_rating_2
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_2.png
+          - key: star_rating_3
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_3.png
+          - key: star_rating_4
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_4.png
+          - key: star_rating_5
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_5.png
+          - key: star_rating_6
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_6.png
+          - key: star_rating_7
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_7.png
+          - key: star_rating_8
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_8.png
+          - key: star_rating_9
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_9.png
+          - key: star_rating_10
+            value: config/kometa-star-ratings/images/<<icon_folder>>/star_10.png
+      rating.gt:
+        conditions:
+          - key: [star_rating_10]
+            value: 9.5
+          - key: [star_rating_9]
+            value: 8.5
+          - key: [star_rating_8]
+            value: 7.5
+          - key: [star_rating_7]
+            value: 6.5
+          - key: [star_rating_6]
+            value: 5.5
+          - key: [star_rating_5]
+            value: 4.5
+          - key: [star_rating_4]
+            value: 3.5
+          - key: [star_rating_3]
+            value: 2.5
+          - key: [star_rating_2]
+            value: 1.5
+          - key: [star_rating_1]
+            value: 0.5
+          - key: [star_rating_0]
+            value: 0
+      rating.lte:
+        conditions:
+          - key: [star_rating_10]
+            value: 10
+          - key: [star_rating_9]
+            value: 9.5
+          - key: [star_rating_8]
+            value: 8.5
+          - key: [star_rating_7]
+            value: 7.5
+          - key: [star_rating_6]
+            value: 6.5
+          - key: [star_rating_5]
+            value: 5.5
+          - key: [star_rating_4]
+            value: 4.5
+          - key: [star_rating_3]
+            value: 3.5
+          - key: [star_rating_2]
+            value: 2.5
+          - key: [star_rating_1]
+            value: 1.5
+          - key: [star_rating_0]
+            value: 0.5
+    ignore_blank_results: true
+    plex_search:
+      - user_rating.gt: <<rating.gt>>
+        user_rating.lte: <<rating.lte>>
+      - user_rating.rated: false
+        audience_rating.gt: <<rating.gt>>
+        audience_rating.lte: <<rating.lte>>
+      - user_rating.rated: false
+        audience_rating.rated: false
+        critic_rating.gt: <<rating.gt>>
+        critic_rating.lte: <<rating.lte>>
+
+    builder_level: <<builder_level>>
+    overlay:
+      name: Star-Rating
+      group: <<group>>
+      weight: <<weight>>
+      file: <<files>>
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+
+overlays:
+  star_rating_10:
+    variables: { key: star_rating_10, weight: 200, group: stars }
+    template: [ name: star_rating ]
+  star_rating_9:
+    variables: { key: star_rating_9, weight: 190, group: stars }
+    template: [ name: star_rating ]
+  star_rating_8:
+    variables: { key: star_rating_8, weight: 180, group: stars }
+    template: [ name: star_rating ]
+  star_rating_7:
+    variables: { key: star_rating_7, weight: 170, group: stars }
+    template: [ name: star_rating ]
+  star_rating_6:
+    variables: { key: star_rating_6, weight: 160, group: stars }
+    template: [ name: star_rating ]
+  star_rating_5:
+    variables: { key: star_rating_5, weight: 150, group: stars }
+    template: [ name: star_rating ]
+  star_rating_4:
+    variables: { key: star_rating_4, weight: 140, group: stars }
+    template: [ name: star_rating ]
+  star_rating_3:
+    variables: { key: star_rating_3, weight: 130, group: stars }
+    template: [ name: star_rating ]
+  star_rating_2:
+    variables: { key: star_rating_2, weight: 120, group: stars }
+    template: [ name: star_rating ]
+  star_rating_1:
+    variables: { key: star_rating_1, weight: 110, group: stars }
+    template: [ name: star_rating ]
+  star_rating_0:
+    variables: { key: star_rating_0, weight: 100, group: stars }
+    template: [ name: star_rating ]
+
